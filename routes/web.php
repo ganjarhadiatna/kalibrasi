@@ -34,4 +34,10 @@ Route::middleware('auth')->group(function () {
 
 	//kalibrasi
 	Route::get('/kalibrasi', 'KalibrasiController@index');
+	Route::get('/kalibrasi/tambah', 'KalibrasiController@tambah');
+	Route::get('/kalibrasi/ubah/{id}', 'KalibrasiController@ubah');
+	//post
+	Route::post('/kalibrasi/publish', 'KalibrasiController@publish');
+	Route::post('/kalibrasi/put', 'KalibrasiController@put');
+	Route::post('/kalibrasi/remove', 'KalibrasiController@remove');
 });

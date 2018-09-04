@@ -20,7 +20,7 @@
 	      <th scope="col">Judul</th>
 	      <th scope="col">Deskripsi</th>
 	      <th scope="col">Tanggal</th>
-	      <th scope="col"></th>
+	      <th width="180"></th>
 	    </tr>
 	  </thead>
 	  <tbody>
