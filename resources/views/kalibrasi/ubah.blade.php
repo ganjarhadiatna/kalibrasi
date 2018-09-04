@@ -34,9 +34,9 @@
                                         @endforeach
                                     </select>
 
-                                    @if ($errors->has('nomor_seri'))
+                                    @if ($errors->has('bidang_kalibrasi'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('nomor_seri') }}</strong>
+                                            <strong>{{ $errors->first('bidang_kalibrasi') }}</strong>
                                         </span>
                                     @endif
                                 </div>

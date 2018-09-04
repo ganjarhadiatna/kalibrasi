@@ -5,14 +5,27 @@
 	    <div class="col">
 	    	<h2>Pengelolaan Kalibrasi</h2>
 	    </div>
-	    <div class="col-4" style="text-align: right;">
+	    <div class="col-md-4" style="text-align: right;">
 	    	<a class="btn btn-primary" href="{{ url('/kalibrasi/tambah') }}" role="button">
 	    		Tambah Kalibrasi
 	    	</a>
 	    </div>
 	</div>
-
+	
 	<br>
+
+	<div class="row">
+	    <div class="col">
+	    	@if ($errors->any())
+			    <div class="alert alert-danger">
+			    	@foreach ($errors->all() as $error)
+			    		<div>{{ $error }}</div>
+			    	@endforeach
+			    </div>
+			@endif
+	    </div>
+	</div>
+
 	<table class="table table-striped table-light">
 	  <thead class="thead-light">
 	    <tr>
@@ -37,11 +50,7 @@
 		      <td>{{ $kl->terakhir_kalibrasi }}</td>
 		      <td>{{ $kl->terakhir_kalibrasi_ulang }}</td>
 		      <td>{{ $kl->keterangan }}</td>
-		      <td>
-		      	@if ($kl->judul != $jdl)
-		      		{{ $kl->judul }}
-		      	@endif
-		      </td>
+		      <td>{{ $kl->judul }}</td>
 		      <td style="text-align: center;">
 		      	<a 
 		      		class="btn btn-warning" 
@@ -62,7 +71,7 @@
 		      	</a>
 		      	<form id="delete-kalibrasi" action="{{ url('/kalibrasi/remove') }}" method="POST" style="display: none;">
 		      		@csrf
-                    <input type="hidden" name="idkalibrasi" value="{{ $kl->idbidang }}">
+                    <input type="hidden" name="idkalibrasi" value="{{ $kl->idbidang }}d" required>
                 </form>
 		      </td>
 		    </tr>

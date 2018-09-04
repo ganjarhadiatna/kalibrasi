@@ -16,7 +16,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('Judul Bidang') }}</label>
 
                             <div class="col-md-8">
-                                <input id="judul" type="text" class="form-control{{ $errors->has('judul') ? ' is-invalid' : '' }}" name="judul" value="{{ old('judul') }}" required autofocus>
+                                <input id="judul" type="text" class="form-control{{ $errors->has('judul') ? ' is-invalid' : '' }}" name="judul" value="{{ old('judul') }}" maxlength="50" required autofocus>
 
                                 @if ($errors->has('judul'))
                                     <span class="invalid-feedback" role="alert">
@@ -33,7 +33,8 @@
                                 <textarea 
                                 	name="deskripsi"
                                 	id="deskripsi"
-                                	class="form-control{{ $errors->has('deskripsi') ? ' is-invalid' : '' }}"></textarea>
+                                	class="form-control{{ $errors->has('deskripsi') ? ' is-invalid' : '' }}"
+                                    maxlength="250"></textarea>
 
                                 @if ($errors->has('deskripsi'))
                                     <span class="invalid-feedback" role="alert">

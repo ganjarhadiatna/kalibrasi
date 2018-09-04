@@ -24,7 +24,7 @@ Route::get('/home', function () {
 Route::middleware('auth')->group(function () {
 	//bidang
 	//get
-	Route::get('/bidang', 'BidangController@index');
+	Route::get('/bidang', 'BidangController@index')->name('bidang');
 	Route::get('/bidang/tambah', 'BidangController@tambah');
 	Route::get('/bidang/ubah/{id}', 'BidangController@ubah');
 	//post
@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
 	Route::post('/bidang/remove', 'BidangController@remove');
 
 	//kalibrasi
-	Route::get('/kalibrasi', 'KalibrasiController@index');
+	Route::get('/kalibrasi', 'KalibrasiController@index')->name('kalibrasi');
 	Route::get('/kalibrasi/tambah', 'KalibrasiController@tambah');
 	Route::get('/kalibrasi/ubah/{id}', 'KalibrasiController@ubah');
 	//post

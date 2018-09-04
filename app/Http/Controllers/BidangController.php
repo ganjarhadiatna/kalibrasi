@@ -33,7 +33,21 @@ class BidangController extends Controller
     //post
     function publish(Request $req)
     {
-    	$id = Auth::id();
+        $req->validate([
+            'judul' => 'required|string|unique:bidang|max:50',
+            'deskripsi' => 'required|string|max:250'
+        ]);
+
+        $data = [
+            'judul' => $req['judul'],
+            'deskripsi' => $req['deskripsi'],
+            'id' => Auth::id()
+        ];
+
+        $publish = BidangModel::Insert($data);
+
+        return redirect()->route('bidang', $publish);
+    	/*$id = Auth::id();
     	if (!empty($id)) 
     	{
     		$judul = $req['judul'];
@@ -68,11 +82,28 @@ class BidangController extends Controller
     			'status' => 'error',
     			'message' => 'Access denied'
     		]);
-    	}
+    	}*/
     }
     function put(Request $req)
     {
-    	$id = Auth::id();
+        $req->validate([
+            'idbidang' => 'required|integer',
+            'judul' => 'required|string|unique:bidang|max:50',
+            'deskripsi' => 'string|max:250'
+        ]);
+
+        $idbidang = $req['idbidang'];
+        $data = [
+            'judul' => $req['judul'],
+            'deskripsi' => $req['deskripsi'],
+            'id' => Auth::id()
+        ];
+
+        $put = BidangModel::Edit($data, $idbidang);
+
+        return redirect()->route('bidang', $put);
+
+    	/*$id = Auth::id();
     	if (!empty($id)) 
     	{
     		$idbidang = $req['idbidang'];
@@ -108,11 +139,20 @@ class BidangController extends Controller
     			'status' => 'error',
     			'message' => 'Access denied'
     		]);
-    	}
+    	}*/
     }
     function remove(Request $req)
     {
-    	$id = Auth::id();
+        $req->validate([
+            'idbidang' => 'required|integer'
+        ]);
+
+        $idbidang = $req['idbidang'];
+        $remove = BidangModel::Remove($idbidang);
+
+        return redirect()->route('bidang', $remove);
+
+    	/*$id = Auth::id();
     	if (!empty($id)) 
     	{
     		$idbidang = $req['idbidang'];
@@ -140,6 +180,6 @@ class BidangController extends Controller
     			'status' => 'error',
     			'message' => 'Access denied'
     		]);
-    	}
+    	}*/
     }
 }

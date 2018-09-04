@@ -39,7 +39,30 @@ class KalibrasiController extends Controller
     //post
     function publish(Request $req)
     {
-    	$id = Auth::id();
+        $req->validate([
+            'nomor_seri' => 'required|string|max:250',
+            'nama_alat' => 'required|string|max:250',
+            'terakhir_kalibrasi' => 'required|date',
+            'terakhir_kalibrasi_ulang' => 'required|date',
+            'deskripsi' => 'string|max:250',
+            'bidang_kalibrasi' => 'required|integer'
+        ]);
+
+        $data = [
+            'no_seri' => $req['nomor_seri'],
+            'nama_alat' => $req['nama_alat'],
+            'terakhir_kalibrasi' => $req['terakhir_kalibrasi'],
+            'terakhir_kalibrasi_ulang' => $req['terakhir_kalibrasi_ulang'],
+            'keterangan' => $req['deskripsi'],
+            'id' => Auth::id(),
+            'idbidang' => $req['bidang_kalibrasi']
+        ];
+
+        $publish = KalibrasiModel::Insert($data);
+
+        return redirect()->route('kalibrasi', $publish);
+
+        /*Auth::id();
     	if (!empty($id)) 
     	{
     		$bidang_kalibrasi = $req['bidang_kalibrasi'];
@@ -82,11 +105,36 @@ class KalibrasiController extends Controller
     			'status' => 'error',
     			'message' => 'Access denied'
     		]);
-    	}
+    	}*/
     }
     function put(Request $req)
     {
-    	$id = Auth::id();
+        $req->validate([
+            'idkalibrasi' => 'required|integer',
+            'nomor_seri' => 'required|string|max:250',
+            'nama_alat' => 'required|string|max:250',
+            'terakhir_kalibrasi' => 'required|date',
+            'terakhir_kalibrasi_ulang' => 'required|date',
+            'deskripsi' => 'string|max:250',
+            'bidang_kalibrasi' => 'required|integer'
+        ]);
+
+        $data = [
+            'no_seri' => $req['nomor_seri'],
+            'nama_alat' => $req['nama_alat'],
+            'terakhir_kalibrasi' => $req['terakhir_kalibrasi'],
+            'terakhir_kalibrasi_ulang' => $req['terakhir_kalibrasi_ulang'],
+            'keterangan' => $req['deskripsi'],
+            'id' => Auth::id(),
+            'idbidang' => $req['bidang_kalibrasi']
+        ];
+
+        $idkalibrasi = $req['idkalibrasi'];
+        $put = KalibrasiModel::Edit($data, $idkalibrasi);
+        
+        return redirect()->route('kalibrasi', $put);
+
+    	/*$id = Auth::id();
     	if (!empty($id)) 
     	{
     		$idkalibrasi = $req['idkalibrasi'];
@@ -130,11 +178,21 @@ class KalibrasiController extends Controller
     			'status' => 'error',
     			'message' => 'Access denied'
     		]);
-    	}
+    	}*/
     }
     function remove(Request $req)
     {
-    	$id = Auth::id();
+        $req->validate([
+            'idkalibrasi' => 'required|integer'
+        ]);
+
+        $idkalibrasi = $req['idkalibrasi'];
+        /*$remove = KalibrasiModel::Remove($idkalibrasi);
+
+        return redirect()->route('kalibrasi', $remove);*/
+        echo $idkalibrasi;
+
+    	/*$id = Auth::id();
     	if (!empty($id)) 
     	{
     		$idkalibrasi = $req['idkalibrasi'];
@@ -162,6 +220,6 @@ class KalibrasiController extends Controller
     			'status' => 'error',
     			'message' => 'Access denied'
     		]);
-    	}
+    	}*/
     }
 }

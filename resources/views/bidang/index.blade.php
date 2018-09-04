@@ -13,6 +13,19 @@
 	</div>
 
 	<br>
+
+	<div class="row">
+	    <div class="col">
+	    	@if ($errors->any())
+			    <div class="alert alert-danger">
+			    	@foreach ($errors->all() as $error)
+			    		<div>{{ $error }}</div>
+			    	@endforeach
+			    </div>
+			@endif
+	    </div>
+	</div>
+	
 	<table class="table table-striped table-light">
 	  <thead class="thead-light">
 	    <tr>
