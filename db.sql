@@ -1,8 +1,8 @@
--- MySQL dump 10.16  Distrib 10.1.35-MariaDB, for Win32 (AMD64)
+-- MySQL dump 10.13  Distrib 5.7.23, for Linux (x86_64)
 --
--- Host: localhost    Database: kalibrasi
+-- Host: localhost    Database: dbkalibrasi
 -- ------------------------------------------------------
--- Server version	10.1.35-MariaDB
+-- Server version	5.7.23-0ubuntu0.16.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -29,9 +29,10 @@ CREATE TABLE `bidang` (
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`idbidang`),
+  UNIQUE KEY `judul` (`judul`),
   KEY `fk_id_bidang` (`id`),
   CONSTRAINT `fk_id_bidang` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +41,7 @@ CREATE TABLE `bidang` (
 
 LOCK TABLES `bidang` WRITE;
 /*!40000 ALTER TABLE `bidang` DISABLE KEYS */;
-INSERT INTO `bidang` VALUES (2,'Gaya','Deskripsi test Cobaan','2018-09-03 09:48:00',1),(3,'Gaya','Deskripsi test','2018-09-03 09:48:11',1);
+INSERT INTO `bidang` VALUES (2,'Gaya Bebas','Deskripsi test Cobaan','2018-09-03 09:48:00',1),(3,'Bidang kedua','Deskripsi test','2018-09-03 09:48:11',1),(4,'Bidang 2','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.','2018-09-04 04:29:01',1),(5,'Bidang 1','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.','2018-09-04 04:29:30',1),(6,'Bidang 3','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.','2018-09-04 04:29:45',1);
 /*!40000 ALTER TABLE `bidang` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -56,7 +57,7 @@ CREATE TABLE `kalibrasi` (
   `no_seri` varchar(250) NOT NULL,
   `nama_alat` varchar(250) NOT NULL,
   `terakhir_kalibrasi` date NOT NULL,
-  `terakhir_kalibrasi_ulang` date NOT NULL,
+  `durasi` int(3) unsigned NOT NULL,
   `keterangan` varchar(250) DEFAULT NULL,
   `id` int(10) unsigned NOT NULL,
   `idbidang` int(10) unsigned NOT NULL,
@@ -65,7 +66,7 @@ CREATE TABLE `kalibrasi` (
   KEY `fk_idkalibrasi_bidang` (`idbidang`),
   CONSTRAINT `fk_id_kalibrasi` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `fk_idkalibrasi_bidang` FOREIGN KEY (`idbidang`) REFERENCES `bidang` (`idbidang`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,6 +75,7 @@ CREATE TABLE `kalibrasi` (
 
 LOCK TABLES `kalibrasi` WRITE;
 /*!40000 ALTER TABLE `kalibrasi` DISABLE KEYS */;
+INSERT INTO `kalibrasi` VALUES (1,'12045','Contoh Alat 1','2018-09-05',0,'Ini hanya sebagai keterangan',1,2),(2,'12043','Contoh Alat 22','2018-09-05',2,'Keterangan Lagi',2,3),(4,'DRG3344','Drag Race','2018-09-05',3,'dsdf sdf s sdfdd',2,2),(5,'Ahuy34234','ahuy','2018-09-04',3,'Ahuy',2,6);
 /*!40000 ALTER TABLE `kalibrasi` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,7 +119,7 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,7 +128,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Admin','admin@gmail.com','$2y$10$9A4mb7s7DNQ7kuxIi4pBe.nYE58zunvgLE/e4TJ8tW3MKL6pVZzC6',NULL,'2018-09-03 02:31:12','2018-09-03 02:31:12');
+INSERT INTO `users` VALUES (1,'Admin','admin@gmail.com','$2y$10$9A4mb7s7DNQ7kuxIi4pBe.nYE58zunvgLE/e4TJ8tW3MKL6pVZzC6',NULL,'2018-09-03 02:31:12','2018-09-03 02:31:12'),(2,'Ahmad Apandi Mulya','aam@gmail.com','$2y$10$sVmpRI8R8pquExUs1xXVU.vSQ0dNPv1CSrSG9DyizLoACMWNxXdMa',NULL,'2018-09-16 20:18:24','2018-09-16 20:18:24');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -139,4 +141,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-09-03 17:07:34
+-- Dump completed on 2018-09-17 11:35:33

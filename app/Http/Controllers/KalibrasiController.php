@@ -43,7 +43,7 @@ class KalibrasiController extends Controller
             'nomor_seri' => 'required|string|max:250',
             'nama_alat' => 'required|string|max:250',
             'terakhir_kalibrasi' => 'required|date',
-            'terakhir_kalibrasi_ulang' => 'required|date',
+            'durasi' => 'required|integer',
             'deskripsi' => 'string|max:250',
             'bidang_kalibrasi' => 'required|integer'
         ]);
@@ -52,7 +52,7 @@ class KalibrasiController extends Controller
             'no_seri' => $req['nomor_seri'],
             'nama_alat' => $req['nama_alat'],
             'terakhir_kalibrasi' => $req['terakhir_kalibrasi'],
-            'terakhir_kalibrasi_ulang' => $req['terakhir_kalibrasi_ulang'],
+            'durasi' => $req['durasi'],
             'keterangan' => $req['deskripsi'],
             'id' => Auth::id(),
             'idbidang' => $req['bidang_kalibrasi']
@@ -61,51 +61,6 @@ class KalibrasiController extends Controller
         $publish = KalibrasiModel::Insert($data);
 
         return redirect()->route('kalibrasi', $publish);
-
-        /*Auth::id();
-    	if (!empty($id)) 
-    	{
-    		$bidang_kalibrasi = $req['bidang_kalibrasi'];
-    		$nomor_seri = $req['nomor_seri'];
-    		$nama_alat = $req['nama_alat'];
-    		$terakhir_kalibrasi = $req['terakhir_kalibrasi'];
-    		$terakhir_kalibrasi_ulang = $req['terakhir_kalibrasi_ulang'];
-	    	$deskripsi = $req['deskripsi'];
-
-	    	$data = [
-	    		'no_seri' => $nomor_seri,
-	    		'nama_alat' => $nama_alat,
-	    		'terakhir_kalibrasi' => $terakhir_kalibrasi,
-	    		'terakhir_kalibrasi_ulang' => $terakhir_kalibrasi_ulang,
-		    	'keterangan' => $deskripsi,
-	    		'id' => $id,
-	    		'idbidang' => $bidang_kalibrasi
-	    	];
-
-	    	$sql = KalibrasiModel::Insert($data);
-	    	if ($sql) 
-	    	{
-	    		return json_encode([
-	    			'status' => 'success',
-	    			'message' => 'Data saved'
-	    		]);
-	    	} 
-	    	else 
-	    	{
-	    		return json_encode([
-	    			'status' => 'error',
-	    			'message' => 'Failed to save'
-	    		]);
-	    	}
-	    	
-    	} 
-    	else 
-    	{
-    		return json_encode([
-    			'status' => 'error',
-    			'message' => 'Access denied'
-    		]);
-    	}*/
     }
     function put(Request $req)
     {
@@ -114,7 +69,7 @@ class KalibrasiController extends Controller
             'nomor_seri' => 'required|string|max:250',
             'nama_alat' => 'required|string|max:250',
             'terakhir_kalibrasi' => 'required|date',
-            'terakhir_kalibrasi_ulang' => 'required|date',
+            'durasi' => 'required|integer',
             'deskripsi' => 'string|max:250',
             'bidang_kalibrasi' => 'required|integer'
         ]);
@@ -123,7 +78,7 @@ class KalibrasiController extends Controller
             'no_seri' => $req['nomor_seri'],
             'nama_alat' => $req['nama_alat'],
             'terakhir_kalibrasi' => $req['terakhir_kalibrasi'],
-            'terakhir_kalibrasi_ulang' => $req['terakhir_kalibrasi_ulang'],
+            'durasi' => $req['durasi'],
             'keterangan' => $req['deskripsi'],
             'id' => Auth::id(),
             'idbidang' => $req['bidang_kalibrasi']
@@ -133,52 +88,6 @@ class KalibrasiController extends Controller
         $put = KalibrasiModel::Edit($data, $idkalibrasi);
         
         return redirect()->route('kalibrasi', $put);
-
-    	/*$id = Auth::id();
-    	if (!empty($id)) 
-    	{
-    		$idkalibrasi = $req['idkalibrasi'];
-    		$bidang_kalibrasi = $req['bidang_kalibrasi'];
-    		$nomor_seri = $req['nomor_seri'];
-    		$nama_alat = $req['nama_alat'];
-    		$terakhir_kalibrasi = $req['terakhir_kalibrasi'];
-    		$terakhir_kalibrasi_ulang = $req['terakhir_kalibrasi_ulang'];
-	    	$deskripsi = $req['deskripsi'];
-
-	    	$data = [
-	    		'no_seri' => $nomor_seri,
-	    		'nama_alat' => $nama_alat,
-	    		'terakhir_kalibrasi' => $terakhir_kalibrasi,
-	    		'terakhir_kalibrasi_ulang' => $terakhir_kalibrasi_ulang,
-		    	'keterangan' => $deskripsi,
-	    		'id' => $id,
-	    		'idbidang' => $bidang_kalibrasi
-	    	];
-
-	    	$sql = KalibrasiModel::Edit($data, $idkalibrasi);
-	    	if ($sql) 
-	    	{
-	    		return json_encode([
-	    			'status' => 'success',
-	    			'message' => 'Data edited'
-	    		]);
-	    	} 
-	    	else 
-	    	{
-	    		return json_encode([
-	    			'status' => 'error',
-	    			'message' => 'Failed to edit'
-	    		]);
-	    	}
-	    	
-    	} 
-    	else 
-    	{
-    		return json_encode([
-    			'status' => 'error',
-    			'message' => 'Access denied'
-    		]);
-    	}*/
     }
     function remove(Request $req)
     {
@@ -192,34 +101,5 @@ class KalibrasiController extends Controller
         return redirect()->route('kalibrasi', $remove);*/
         echo $idkalibrasi;
 
-    	/*$id = Auth::id();
-    	if (!empty($id)) 
-    	{
-    		$idkalibrasi = $req['idkalibrasi'];
-
-	    	$sql = KalibrasiModel::Remove($idkalibrasi);
-	    	if ($sql) 
-	    	{
-	    		return json_encode([
-	    			'status' => 'success',
-	    			'message' => 'Data deleted'
-	    		]);
-	    	} 
-	    	else 
-	    	{
-	    		return json_encode([
-	    			'status' => 'error',
-	    			'message' => 'Failed to delete'
-	    		]);
-	    	}
-	    	
-    	} 
-    	else 
-    	{
-    		return json_encode([
-    			'status' => 'error',
-    			'message' => 'Access denied'
-    		]);
-    	}*/
     }
 }

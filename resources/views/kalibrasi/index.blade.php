@@ -32,6 +32,7 @@
 	      <th scope="col">#</th>
 	      <th scope="col">Nomor Seri</th>
 	      <th scope="col">Nama Alat</th>
+	      <th scope="col">Durasi</th>
 	      <th scope="col">Terakhir Kalibrasi</th>
 	      <th scope="col">Terakhir Kalibrasi Ulang</th>
 	      <th scope="col">Keterangan</th>
@@ -47,8 +48,9 @@
 		      <th scope="row">{{ $i }}</th>
 		      <td>{{ $kl->no_seri }}</td>
 		      <td>{{ $kl->nama_alat }}</td>
+		      <td>{{ $kl->durasi }}</td>
 		      <td>{{ $kl->terakhir_kalibrasi }}</td>
-		      <td>{{ $kl->terakhir_kalibrasi_ulang }}</td>
+		      <td>{{ date( "Y-m-d", strtotime( "$kl->terakhir_kalibrasi +$kl->durasi year" )) }}</td>
 		      <td>{{ $kl->keterangan }}</td>
 		      <td>{{ $kl->judul }}</td>
 		      <td style="text-align: center;">

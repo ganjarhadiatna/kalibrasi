@@ -85,14 +85,14 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('Terakhir Kalibrasi Ulang') }}</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-left">{{ __('Durasi') }}</label>
 
                                 <div class="col-md-8">
-                                    <input id="terakhir_kalibrasi_ulang" type="date" class="form-control{{ $errors->has('terakhir_kalibrasi_ulang') ? ' is-invalid' : '' }}" name="terakhir_kalibrasi_ulang" value="{{ $kl->terakhir_kalibrasi_ulang }}" required autofocus>
+                                    <input id="durasi" type="number" class="form-control{{ $errors->has('durasi') ? ' is-invalid' : '' }}" name="durasi" value="{{ $kl->durasi }}" required autofocus>
 
-                                    @if ($errors->has('terakhir_kalibrasi_ulang'))
+                                    @if ($errors->has('durasi'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('terakhir_kalibrasi_ulang') }}</strong>
+                                            <strong>{{ $errors->first('durasi') }}</strong>
                                         </span>
                                     @endif
                                 </div>
