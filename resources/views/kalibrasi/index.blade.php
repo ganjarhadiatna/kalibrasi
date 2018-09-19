@@ -73,7 +73,7 @@
 		      	</a>
 		      	<form id="delete-kalibrasi" action="{{ url('/kalibrasi/remove') }}" method="POST" style="display: none;">
 		      		@csrf
-                    <input type="hidden" name="idkalibrasi" value="{{ $kl->idbidang }}d" required>
+                    <input type="hidden" name="idkalibrasi" value="{{ $kl->idbidang }}" required>
                 </form>
 		      </td>
 		    </tr>
