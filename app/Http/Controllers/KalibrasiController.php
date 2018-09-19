@@ -96,10 +96,9 @@ class KalibrasiController extends Controller
         ]);
 
         $idkalibrasi = $req['idkalibrasi'];
-        /*$remove = KalibrasiModel::Remove($idkalibrasi);
+        $remove = KalibrasiModel::Remove($idkalibrasi);
 
-        return redirect()->route('kalibrasi', $remove);*/
-        echo $idkalibrasi;
+        return redirect()->route('kalibrasi', $remove);
 
     }
 }
