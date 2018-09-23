@@ -3,11 +3,11 @@
 <div class="container">
 	<div class="row">
 	    <div class="col">
-	    	<h2>Pengelolaan Kalibrasi</h2>
+	    	<h2>Jadwal Kalibrasi</h2>
 	    </div>
 	    <div class="col-md-4" style="text-align: right;">
 	    	<a class="btn btn-primary" href="{{ url('/kalibrasi/tambah') }}" role="button">
-	    		Tambah Kalibrasi
+	    		Tambah Jadwal Kalibrasi
 	    	</a>
 	    </div>
 	</div>
@@ -37,7 +37,7 @@
 	      <th scope="col">Terakhir Kalibrasi Ulang</th>
 	      <th scope="col">Keterangan</th>
 	      <th scope="col">Bidang</th>
-	      <th width="180"></th>
+	      <th width="240"></th>
 	    </tr>
 	  </thead>
 	  <tbody>
@@ -48,12 +48,18 @@
 		      <th scope="row">{{ $i }}</th>
 		      <td>{{ $kl->no_seri }}</td>
 		      <td>{{ $kl->nama_alat }}</td>
-		      <td>{{ $kl->durasi }}</td>
-		      <td>{{ $kl->terakhir_kalibrasi }}</td>
-		      <td>{{ date( "Y-m-d", strtotime( "$kl->terakhir_kalibrasi +$kl->durasi year" )) }}</td>
+		      <td>{{ $kl->interval_kalibrasi }}</td>
+		      <td>{{ $kl->terakhir_perawatan }}</td>
+		      <td>{{ date( "Y-m-d", strtotime( "$kl->terakhir_perawatan +$kl->interval_kalibrasi year" )) }}</td>
 		      <td>{{ $kl->keterangan }}</td>
 		      <td>{{ $kl->judul }}</td>
 		      <td style="text-align: center;">
+		      	<a 
+		      		class="btn btn-info" 
+		      		href="{{ url('/kalibrasi/detail/'.$kl->idkalibrasi) }}" 
+		      		role="button">
+		      		Detail
+		      	</a>
 		      	<a 
 		      		class="btn btn-warning" 
 		      		href="{{ url('/kalibrasi/ubah/'.$kl->idkalibrasi) }}" 

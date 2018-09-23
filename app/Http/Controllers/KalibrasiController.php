@@ -35,53 +35,90 @@ class KalibrasiController extends Controller
     		'bidang' => $bidang
     	]);
     }
+    function detail($id)
+    {
+        $kalibrasi = KalibrasiModel::GetById($id);
+        $bidang = BidangModel::GetAll(100, 'asc');
+        return view('kalibrasi.detail', [
+            'kalibrasi' => $kalibrasi,
+            'bidang' => $bidang
+        ]);
+    }
 
     //post
     function publish(Request $req)
     {
         $req->validate([
-            'nomor_seri' => 'required|string|max:250',
+            'pengujian' => 'required|integer',
             'nama_alat' => 'required|string|max:250',
-            'terakhir_kalibrasi' => 'required|date',
-            'durasi' => 'required|integer',
-            'deskripsi' => 'string|max:250',
-            'bidang_kalibrasi' => 'required|integer'
+            'nomor_seri' => 'required|string|max:250',
+            'rentang_ukur' => 'required|string|max:250',
+            'interval_pengecekan' => 'required|integer',
+            'interval_kalibrasi' => 'required|integer',
+            'lembaga_kalibrasi' => 'required|string|max:250',
+            'hasil_kalibrasi' => 'required|string|max:250',
+            'jadwal_perawatan_rutin' => 'required|string|max:250',
+            'terakhir_perawatan' => 'required|date',
+            'pic' => 'required|string|max:250',
+            'status' => 'string|max:250',
+            'deskripsi' => 'string|max:250'
         ]);
 
         $data = [
-            'no_seri' => $req['nomor_seri'],
             'nama_alat' => $req['nama_alat'],
-            'terakhir_kalibrasi' => $req['terakhir_kalibrasi'],
-            'durasi' => $req['durasi'],
+            'no_seri' => $req['nomor_seri'],
+            'rentang_ukur' => $req['rentang_ukur'],
+            'interval_pengecekan' => $req['interval_pengecekan'],
+            'interval_kalibrasi' => $req['interval_kalibrasi'],
+            'lembaga_kalibrasi' => $req['lembaga_kalibrasi'],
+            'hasil_kalibrasi' => $req['hasil_kalibrasi'],
+            'jadwal_perawatan_rutin' => $req['jadwal_perawatan_rutin'],
+            'terakhir_perawatan' => $req['terakhir_perawatan'],
+            'pic' => $req['pic'],
+            'status' => $req['status'],
             'keterangan' => $req['deskripsi'],
             'id' => Auth::id(),
-            'idbidang' => $req['bidang_kalibrasi']
+            'idbidang' => $req['pengujian']
         ];
 
         $publish = KalibrasiModel::Insert($data);
 
         return redirect()->route('kalibrasi', $publish);
+        //return response()->json($data);
     }
     function put(Request $req)
     {
         $req->validate([
-            'idkalibrasi' => 'required|integer',
-            'nomor_seri' => 'required|string|max:250',
+            'pengujian' => 'required|integer',
             'nama_alat' => 'required|string|max:250',
-            'terakhir_kalibrasi' => 'required|date',
-            'durasi' => 'required|integer',
-            'deskripsi' => 'string|max:250',
-            'bidang_kalibrasi' => 'required|integer'
+            'nomor_seri' => 'required|string|max:250',
+            'rentang_ukur' => 'required|string|max:250',
+            'interval_pengecekan' => 'required|integer',
+            'interval_kalibrasi' => 'required|integer',
+            'lembaga_kalibrasi' => 'required|string|max:250',
+            'hasil_kalibrasi' => 'required|string|max:250',
+            'jadwal_perawatan_rutin' => 'required|string|max:250',
+            'terakhir_perawatan' => 'required|date',
+            'pic' => 'required|string|max:250',
+            'status' => 'string|max:250',
+            'deskripsi' => 'string|max:250'
         ]);
 
         $data = [
-            'no_seri' => $req['nomor_seri'],
             'nama_alat' => $req['nama_alat'],
-            'terakhir_kalibrasi' => $req['terakhir_kalibrasi'],
-            'durasi' => $req['durasi'],
+            'no_seri' => $req['nomor_seri'],
+            'rentang_ukur' => $req['rentang_ukur'],
+            'interval_pengecekan' => $req['interval_pengecekan'],
+            'interval_kalibrasi' => $req['interval_kalibrasi'],
+            'lembaga_kalibrasi' => $req['lembaga_kalibrasi'],
+            'hasil_kalibrasi' => $req['hasil_kalibrasi'],
+            'jadwal_perawatan_rutin' => $req['jadwal_perawatan_rutin'],
+            'terakhir_perawatan' => $req['terakhir_perawatan'],
+            'pic' => $req['pic'],
+            'status' => $req['status'],
             'keterangan' => $req['deskripsi'],
             'id' => Auth::id(),
-            'idbidang' => $req['bidang_kalibrasi']
+            'idbidang' => $req['pengujian']
         ];
 
         $idkalibrasi = $req['idkalibrasi'];

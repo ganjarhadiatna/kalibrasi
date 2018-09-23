@@ -3,11 +3,11 @@
 <div class="container">
 	<div class="row">
 	    <div class="col">
-	    	<h2>Bidang Kalibrasi</h2>
+	    	<h2>Bidang Pengujian</h2>
 	    </div>
 	    <div class="col-4" style="text-align: right;">
 	    	<a class="btn btn-primary" href="{{ url('/bidang/tambah') }}" role="button">
-	    		Tambah Bidang
+	    		Tambah Bidang Pengujian
 	    	</a>
 	    </div>
 	</div>

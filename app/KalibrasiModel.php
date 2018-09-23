@@ -35,14 +35,21 @@ class KalibrasiModel extends Model
     {
     	return DB::table($this->table)
     	->select(
-    		'kalibrasi.idkalibrasi',
-    		'kalibrasi.no_seri',
-	    	'kalibrasi.nama_alat',
-	    	'kalibrasi.terakhir_kalibrasi',
-	    	'kalibrasi.durasi',
-		    'kalibrasi.keterangan',
-	    	'kalibrasi.id',
-	    	'kalibrasi.idbidang',
+            'kalibrasi.idkalibrasi',
+            'kalibrasi.nama_alat',
+            'kalibrasi.no_seri',
+            'kalibrasi.rentang_ukur',
+            'kalibrasi.interval_pengecekan',
+            'kalibrasi.interval_kalibrasi',
+            'kalibrasi.lembaga_kalibrasi',
+            'kalibrasi.hasil_kalibrasi',
+            'kalibrasi.jadwal_perawatan_rutin',
+            'kalibrasi.terakhir_perawatan',
+            'kalibrasi.pic',
+            'kalibrasi.status',
+            'kalibrasi.keterangan',
+            'kalibrasi.id',
+            'kalibrasi.idbidang',
 	    	'bidang.judul'
     	)
     	->join('bidang', 'bidang.idbidang', '=', 'kalibrasi.idbidang')
@@ -55,14 +62,21 @@ class KalibrasiModel extends Model
     	return DB::table($this->table)
     	->select(
     		'kalibrasi.idkalibrasi',
-    		'kalibrasi.no_seri',
-	    	'kalibrasi.nama_alat',
-	    	'kalibrasi.terakhir_kalibrasi',
-	    	'kalibrasi.durasi',
-		    'kalibrasi.keterangan',
-	    	'kalibrasi.id',
-	    	'kalibrasi.idbidang',
-	    	'bidang.judul'
+            'kalibrasi.nama_alat',
+            'kalibrasi.no_seri',
+            'kalibrasi.rentang_ukur',
+            'kalibrasi.interval_pengecekan',
+            'kalibrasi.interval_kalibrasi',
+            'kalibrasi.lembaga_kalibrasi',
+            'kalibrasi.hasil_kalibrasi',
+            'kalibrasi.jadwal_perawatan_rutin',
+            'kalibrasi.terakhir_perawatan',
+            'kalibrasi.pic',
+            'kalibrasi.status',
+            'kalibrasi.keterangan',
+            'kalibrasi.id',
+            'kalibrasi.idbidang',
+            'bidang.judul'
     	)
     	->join('bidang', 'bidang.idbidang', '=', 'kalibrasi.idbidang')
     	->where('idkalibrasi', $id)

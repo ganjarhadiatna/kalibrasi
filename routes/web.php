@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
 	Route::get('/kalibrasi', 'KalibrasiController@index')->name('kalibrasi');
 	Route::get('/kalibrasi/tambah', 'KalibrasiController@tambah');
 	Route::get('/kalibrasi/ubah/{id}', 'KalibrasiController@ubah');
+	Route::get('/kalibrasi/detail/{id}', 'KalibrasiController@detail');
 	//post
 	Route::post('/kalibrasi/publish', 'KalibrasiController@publish');
 	Route::post('/kalibrasi/put', 'KalibrasiController@put');
