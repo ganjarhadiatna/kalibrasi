@@ -1,0 +1,5 @@
+/*
+    Tambahkan kode dibawah ini di database mysql
+*/
+
+alter table users add type enum('admin','staff') not null default 'staff' after password;

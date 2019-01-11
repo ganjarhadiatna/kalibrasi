@@ -5,10 +5,12 @@
 	    <div class="col">
 	    	<h2>Jadwal Kalibrasi</h2>
 	    </div>
-	    <div class="col-md-4" style="text-align: right;">
-	    	<a class="btn btn-primary" href="{{ url('/kalibrasi/tambah') }}" role="button">
-	    		Tambah Jadwal Kalibrasi
-	    	</a>
+			<div class="col-md-4" style="text-align: right;">
+				@if (Auth::user()->type == 'admin')
+					<a class="btn btn-primary" href="{{ url('/kalibrasi/tambah') }}" role="button">
+						Tambah Jadwal Kalibrasi
+					</a>
+				@endif
 	    </div>
 	</div>
 	
@@ -59,28 +61,30 @@
 		      		href="{{ url('/kalibrasi/detail/'.$kl->idkalibrasi) }}" 
 		      		role="button">
 		      		Detail
-		      	</a>
-		      	<a 
-		      		class="btn btn-warning" 
-		      		href="{{ url('/kalibrasi/ubah/'.$kl->idkalibrasi) }}" 
-		      		role="button">
-		      		Ubah
-		      	</a>
-		      	<a 
-		      		class="btn btn-danger" 
-		      		href="{{ url('/kalibrasi/remove') }}" 
-		      		role="button"
-		      		onclick="
-		      			event.preventDefault();
-		      			document
-		      			.getElementById('delete-kalibrasi')
-		      			.submit();">
-		      		Hapus
-		      	</a>
-		      	<form id="delete-kalibrasi" action="{{ url('/kalibrasi/remove') }}" method="POST" style="display: none;">
-		      		@csrf
-                    <input type="hidden" name="idkalibrasi" value="{{ $kl->idkalibrasi }}" required>
-                </form>
+						</a>
+						@if (Auth::user()->type == 'admin')
+							<a 
+								class="btn btn-warning" 
+								href="{{ url('/kalibrasi/ubah/'.$kl->idkalibrasi) }}" 
+								role="button">
+								Ubah
+							</a>
+							<a 
+								class="btn btn-danger" 
+								href="{{ url('/kalibrasi/remove') }}" 
+								role="button"
+								onclick="
+									event.preventDefault();
+									document
+									.getElementById('delete-kalibrasi')
+									.submit();">
+								Hapus
+							</a>
+							<form id="delete-kalibrasi" action="{{ url('/kalibrasi/remove') }}" method="POST" style="display: none;">
+								@csrf
+								<input type="hidden" name="idkalibrasi" value="{{ $kl->idkalibrasi }}" required>
+							</form>
+						@endif
 		      </td>
 		    </tr>
 		    <?php $jdl = $kl->judul; ?>

@@ -5,10 +5,12 @@
 	    <div class="col">
 	    	<h2>Bidang Pengujian</h2>
 	    </div>
-	    <div class="col-4" style="text-align: right;">
-	    	<a class="btn btn-primary" href="{{ url('/bidang/tambah') }}" role="button">
-	    		Tambah Bidang Pengujian
-	    	</a>
+			<div class="col-4" style="text-align: right;">
+				@if (Auth::user()->type == 'admin')
+					<a class="btn btn-primary" href="{{ url('/bidang/tambah') }}" role="button">
+						Tambah Bidang Pengujian
+					</a>
+				@endif
 	    </div>
 	</div>
 
@@ -32,8 +34,10 @@
 	      <th scope="col">#</th>
 	      <th scope="col">Judul</th>
 	      <th scope="col">Deskripsi</th>
-	      <th scope="col">Tanggal</th>
-	      <th width="180"></th>
+				<th scope="col">Tanggal</th>
+				@if (Auth::user()->type == 'admin')
+					<th width="180"></th>
+				@endif
 	    </tr>
 	  </thead>
 	  <tbody>
@@ -43,30 +47,32 @@
 		      <th scope="row">{{ $i }}</th>
 		      <td>{{ $bd->judul }}</td>
 		      <td>{{ $bd->deskripsi }}</td>
-		      <td>{{ $bd->created }}</td>
-		      <td style="text-align: center;">
-		      	<a 
-		      		class="btn btn-warning" 
-		      		href="{{ url('/bidang/ubah/'.$bd->idbidang) }}" 
-		      		role="button">
-		      		Ubah
-		      	</a>
-		      	<a 
-		      		class="btn btn-danger" 
-		      		href="{{ url('/bidang/remove') }}" 
-		      		role="button"
-		      		onclick="
-		      			event.preventDefault();
-		      			document
-		      			.getElementById('delete-bidang')
-		      			.submit();">
-		      		Hapus
-		      	</a>
-		      	<form id="delete-bidang" action="{{ url('/bidang/remove') }}" method="POST" style="display: none;">
-		      		@csrf
-                    <input type="hidden" name="idbidang" value="{{ $bd->idbidang }}">
-                </form>
-		      </td>
+					<td>{{ $bd->created }}</td>
+					@if (Auth::user()->type == 'admin')
+						<td style="text-align: center;">
+							<a 
+								class="btn btn-warning" 
+								href="{{ url('/bidang/ubah/'.$bd->idbidang) }}" 
+								role="button">
+								Ubah
+							</a>
+							<a 
+								class="btn btn-danger" 
+								href="{{ url('/bidang/remove') }}" 
+								role="button"
+								onclick="
+									event.preventDefault();
+									document
+									.getElementById('delete-bidang')
+									.submit();">
+								Hapus
+							</a>
+							<form id="delete-bidang" action="{{ url('/bidang/remove') }}" method="POST" style="display: none;">
+								@csrf
+								<input type="hidden" name="idbidang" value="{{ $bd->idbidang }}">
+							</form>
+						</td>
+					@endif
 		    </tr>
 		    <?php $i++; ?>
 		@endforeach

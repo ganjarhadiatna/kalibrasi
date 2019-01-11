@@ -5,26 +5,28 @@
 		<div class="row">
 		    <div class="col">
 		    	<h2>Detail Jadwal Kalibrasi</h2>
-		    </div>
-		    <div class="col-md-4" style="text-align: right;">
-		    	<a 
-			      	class="btn btn-warning" 
-			      	href="{{ url('/kalibrasi/ubah/'.$kl->idkalibrasi) }}" 
-			      	role="button">
-			      	Ubah
-			    </a>
-			    <a 
-			      	class="btn btn-danger" 
-			      	href="{{ url('/kalibrasi/remove') }}" 
-			      	role="button"
-			      	onclick="
-			      		event.preventDefault();
-			      		document
-			      		.getElementById('delete-kalibrasi')
-			      		.submit();">
-			      	Hapus
-			    </a>
-		    </div>
+            </div>
+            @if (Auth::user()->type == 'admin')
+                <div class="col-md-4" style="text-align: right;">
+                    <a 
+                        class="btn btn-warning" 
+                        href="{{ url('/kalibrasi/ubah/'.$kl->idkalibrasi) }}" 
+                        role="button">
+                        Ubah
+                    </a>
+                    <a 
+                        class="btn btn-danger" 
+                        href="{{ url('/kalibrasi/remove') }}" 
+                        role="button"
+                        onclick="
+                            event.preventDefault();
+                            document
+                            .getElementById('delete-kalibrasi')
+                            .submit();">
+                        Hapus
+                    </a>
+                </div>
+            @endif
 		</div>
 		<br>
 		<div class="row justify-content-center">
