@@ -76,8 +76,8 @@
                 <div class="links">
 
                     @if (Auth::id())
-                        <a href="{{ url('/bidang') }}">Bidang Kalibrasi</a>
-                        <a href="{{ url('/kalibrasi') }}">Pengelolaan Kalibrasi</a>
+                        <a href="{{ url('/bidang') }}">Daftar Bidang Pengujian</a>
+                        <a href="{{ url('/kalibrasi') }}">Jadwal Kalibrasi Alat</a>
                     @else 
                         <a href="{{ route('login') }}">Login</a>
                         <a href="{{ route('register') }}">Register</a>

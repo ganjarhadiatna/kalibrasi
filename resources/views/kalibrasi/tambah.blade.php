@@ -5,7 +5,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header text-md-center">
-                	Tambah Jadwal Kalibrasi
+                	Tambah Jadwal Kalibrasi Alat
                 </div>
 
                 <div class="card-body">
@@ -209,11 +209,11 @@
 
                             <div class="col-md-8">
                                 <select id="status" type="text" class="form-control{{ $errors->has('status') ? ' is-invalid' : '' }}" name="status" required>
-                                    <option value="baik">
-                                        Baik
+                                    <option value="1">
+                                        Terkalibrasi
                                     </option>
-                                    <option value="tidak baik">
-                                        Tidak Baik
+                                    <option value="0">
+                                        Tidak Terkalibrasi
                                     </option>
                                 </select>
 

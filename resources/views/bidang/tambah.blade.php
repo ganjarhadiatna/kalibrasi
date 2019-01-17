@@ -5,7 +5,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header text-md-center">
-                	Tambah Bidang Kalibrasi
+                	Tambah Bidang Pengujian
                 </div>
 
                 <div class="card-body">

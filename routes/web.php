@@ -27,6 +27,8 @@ Route::middleware('auth')->group(function () {
 	Route::get('/bidang', 'BidangController@index')->name('bidang');
 	Route::get('/bidang/tambah', 'BidangController@tambah');
 	Route::get('/bidang/ubah/{id}', 'BidangController@ubah');
+	Route::get('/bidang/alat/{id}', 'KalibrasiController@byBidang');
+	
 	//post
 	Route::post('/bidang/publish', 'BidangController@publish');
 	Route::post('/bidang/put', 'BidangController@put');
@@ -37,6 +39,9 @@ Route::middleware('auth')->group(function () {
 	Route::get('/kalibrasi/tambah', 'KalibrasiController@tambah');
 	Route::get('/kalibrasi/ubah/{id}', 'KalibrasiController@ubah');
 	Route::get('/kalibrasi/detail/{id}', 'KalibrasiController@detail');
+	Route::get('/kalibrasi/done/{id}', 'KalibrasiController@done');
+	Route::get('/kalibrasi/riwayat/{id}', 'RiwayatController@index');
+
 	//post
 	Route::post('/kalibrasi/publish', 'KalibrasiController@publish');
 	Route::post('/kalibrasi/put', 'KalibrasiController@put');

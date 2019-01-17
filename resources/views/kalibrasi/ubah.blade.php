@@ -5,7 +5,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header text-md-center">
-                	Ubah Jadwal Kalibrasi
+                	Ubah Jadwal Kalibrasi Alat
                 </div>
 
                 @foreach ($kalibrasi as $kl)
@@ -228,19 +228,19 @@
 
                                 <div class="col-md-8">
                                     <select id="status" type="text" class="form-control{{ $errors->has('status') ? ' is-invalid' : '' }}" name="status" required>
-                                        @if ($kl->status == 'baik')
-                                            <option value="baik" selected>
-                                                Baik
+                                        @if ($kl->status == '1')
+                                            <option value="1" selected>
+                                                Terkalibrasi
                                             </option>
-                                            <option value="tidak baik">
-                                                Tidak Baik
+                                            <option value="0">
+                                                Tidak Terkalibrasi
                                             </option>
                                         @else
-                                            <option value="baik">
-                                                Baik
+                                            <option value="1">
+                                                Terkalibrasi
                                             </option>
-                                            <option value="tidak baik" selected>
-                                                Tidak Baik
+                                            <option value="0" selected>
+                                                Tidak Terkalibrasi
                                             </option>
                                         @endif
                                     </select>

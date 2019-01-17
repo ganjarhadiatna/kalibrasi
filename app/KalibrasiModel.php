@@ -31,6 +31,12 @@ class KalibrasiModel extends Model
     }
 
     //read
+    function scopeGetVal($query, $id, $val)
+    {
+        return DB::table($this->table)
+        ->where('idkalibrasi', $id)
+        ->value($val);
+    }
     function scopeGetAll($query, $limit, $order = 'asc')
     {
     	return DB::table($this->table)
@@ -82,5 +88,32 @@ class KalibrasiModel extends Model
     	->where('idkalibrasi', $id)
     	->limit(1)
     	->get();
+    }
+
+    function scopeGetByBidang($query, $idbidang, $limit, $order = 'asc')
+    {
+    	return DB::table($this->table)
+    	->select(
+    		'kalibrasi.idkalibrasi',
+            'kalibrasi.nama_alat',
+            'kalibrasi.no_seri',
+            'kalibrasi.rentang_ukur',
+            'kalibrasi.interval_pengecekan',
+            'kalibrasi.interval_kalibrasi',
+            'kalibrasi.lembaga_kalibrasi',
+            'kalibrasi.hasil_kalibrasi',
+            'kalibrasi.jadwal_perawatan_rutin',
+            'kalibrasi.terakhir_perawatan',
+            'kalibrasi.pic',
+            'kalibrasi.status',
+            'kalibrasi.keterangan',
+            'kalibrasi.id',
+            'kalibrasi.idbidang',
+            'bidang.judul'
+    	)
+    	->join('bidang', 'bidang.idbidang', '=', 'kalibrasi.idbidang')
+    	->where('kalibrasi.idbidang', $idbidang)
+    	->orderBy('bidang.judul', $order)
+    	->paginate($limit);
     }
 }

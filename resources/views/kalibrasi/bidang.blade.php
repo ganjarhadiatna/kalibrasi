@@ -39,10 +39,8 @@
 				<th scope="col">#</th>
 				<th scope="col">Nama Bidang</th>
 	      <th scope="col">Nama Alat</th>
-	      <th scope="col">Rentan Kalibrasi</th>
-	      <th scope="col">Kalibrasi Selanjutnya</th>
-	      <th scope="col">Status</th>
-	      <th width="390"></th>
+	      <th scope="col">Tanggal Kalibrasi Terakhir</th>
+	      <th width="380"></th>
 	    </tr>
 	  </thead>
 	  <tbody>
@@ -53,29 +51,15 @@
 					<th scope="row">{{ $i }}</th>
 					<td>{{ $kl->judul }}</td>
 		      <td>{{ $kl->nama_alat }}</td>
-		      <td>{{ $kl->interval_kalibrasi }} Tahun</td>
-					<td>
+		      <td>
 						@if (is_string(RiwayatModel::GetLastRiwayat($kl->idkalibrasi)))
 							{{ RiwayatModel::GetLastRiwayat($kl->idkalibrasi) }}
 						@else
 							{{ $kl->terakhir_perawatan }}
 						@endif
 					</td>
-		      <td>
-							@if ($kl->status == '1')
-								Terkalibrasi
-							@else
-								Tidak Terkalibrasi
-							@endif
-					</td>
 		      <td style="text-align: center;">
-		      	{{-- <a 
-		      		class="btn btn-info" 
-		      		href="{{ url('/kalibrasi/done/'.$kl->idkalibrasi) }}" 
-		      		role="button">
-		      		Kalibrasi
-						</a> --}}
-						<a 
+		      	<a 
 		      		class="btn btn-info" 
 		      		href="{{ url('/kalibrasi/detail/'.$kl->idkalibrasi) }}" 
 		      		role="button">

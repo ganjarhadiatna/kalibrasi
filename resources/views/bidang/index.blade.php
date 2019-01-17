@@ -3,11 +3,12 @@
 <div class="container">
 	<div class="row">
 	    <div class="col">
-	    	<h2>Bidang Pengujian</h2>
+	    	<h2>Daftar Bidang Pengujian</h2>
 	    </div>
 			<div class="col-4" style="text-align: right;">
 				@if (Auth::user()->type == 'admin')
 					<a class="btn btn-primary" href="{{ url('/bidang/tambah') }}" role="button">
+						<i class="fa fa-lg fa-plus-circle"></i>
 						Tambah Bidang Pengujian
 					</a>
 				@endif
@@ -32,11 +33,11 @@
 	  <thead class="thead-light">
 	    <tr>
 	      <th scope="col">#</th>
-	      <th scope="col">Judul</th>
+	      <th scope="col">Nama Bidang</th>
 	      <th scope="col">Deskripsi</th>
 				<th scope="col">Tanggal</th>
 				@if (Auth::user()->type == 'admin')
-					<th width="180"></th>
+					<th width="230"></th>
 				@endif
 	    </tr>
 	  </thead>
@@ -50,6 +51,12 @@
 					<td>{{ $bd->created }}</td>
 					@if (Auth::user()->type == 'admin')
 						<td style="text-align: center;">
+							<a 
+								class="btn btn-info" 
+								href="{{ url('/bidang/alat/'.$bd->idbidang) }}" 
+								role="button">
+								Alat
+							</a>
 							<a 
 								class="btn btn-warning" 
 								href="{{ url('/bidang/ubah/'.$bd->idbidang) }}" 

@@ -1,3 +1,7 @@
+<?php
+	use App\RiwayatModel;
+?>
+
 @extends('layouts.app')
 @section('content')
 @foreach ($kalibrasi as $kl)
@@ -6,8 +10,21 @@
 		    <div class="col">
 		    	<h2>Detail Jadwal Kalibrasi</h2>
             </div>
-            @if (Auth::user()->type == 'admin')
-                <div class="col-md-4" style="text-align: right;">
+            <div class="col-md-8" style="text-align: right;">
+                <a 
+                    class="btn btn-info" 
+                    href="{{ url('/kalibrasi/done/'.$kl->idkalibrasi) }}" 
+                    role="button">
+                    <i class="fa fa-lg fa-cog"></i>
+                    Kalibrasi
+                </a>
+                <a 
+                    class="btn btn-primary" 
+                    href="{{ url('/kalibrasi/riwayat/'.$kl->idkalibrasi) }}" 
+                    role="button">
+                    Riwayat Kalibrasi
+                </a>
+                @if (Auth::user()->type == 'admin')
                     <a 
                         class="btn btn-warning" 
                         href="{{ url('/kalibrasi/ubah/'.$kl->idkalibrasi) }}" 
@@ -25,8 +42,8 @@
                             .submit();">
                         Hapus
                     </a>
-                </div>
-            @endif
+                @endif
+            </div>
 		</div>
 		<br>
 		<div class="row justify-content-center">
@@ -106,7 +123,7 @@
 
                                 <div class="col-md-8">
                                     <label for="name" class="col col-form-label text-md-left">
-                                		: {{ $kl->interval_kalibrasi }}
+                                		: {{ $kl->interval_kalibrasi }} Tahun
 	                                </label>
                                 </div>
                             </div>
@@ -161,6 +178,22 @@
 
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-left">
+                                    {{ __('Kalibrasi Selanjutnya') }}
+                                </label>
+
+                                <div class="col-md-8">
+                                    <label for="name" class="col col-form-label text-md-left">
+                                        @if (is_string(RiwayatModel::GetLastRiwayat($kl->idkalibrasi)))
+                                            : {{ RiwayatModel::GetLastRiwayat($kl->idkalibrasi) }}
+                                        @else
+                                            : {{ $kl->terakhir_perawatan }}
+                                        @endif
+	                                </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-left">
                                     {{ __('PIC') }}
                                 </label>
 
@@ -178,7 +211,11 @@
 
                                 <div class="col-md-8">
                                     <label for="name" class="col col-form-label text-md-left" style="text-transform: uppercase;">
-                                		: {{ $kl->status }}
+                                        @if ($kl->status == '1')
+                                            : Terkalibrasi
+                                        @else
+                                            : Tidak Terkalibrasi
+                                        @endif
 	                                </label>
                                 </div>
                             </div>

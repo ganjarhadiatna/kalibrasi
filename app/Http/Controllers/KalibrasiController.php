@@ -8,6 +8,7 @@ use Auth;
 
 use App\KalibrasiModel;
 use App\BidangModel;
+use App\RiwayatModel;
 
 class KalibrasiController extends Controller
 {
@@ -16,6 +17,13 @@ class KalibrasiController extends Controller
     {
     	$kalibrasi = KalibrasiModel::GetAll(10, 'asc');
     	return view('kalibrasi.index', [
+    		'kalibrasi' => $kalibrasi
+    	]);
+    }
+    function byBidang($idbidang)
+    {
+    	$kalibrasi = KalibrasiModel::GetByBidang($idbidang, 10, 'asc');
+    	return view('kalibrasi.bidang', [
     		'kalibrasi' => $kalibrasi
     	]);
     }
@@ -43,6 +51,43 @@ class KalibrasiController extends Controller
             'kalibrasi' => $kalibrasi,
             'bidang' => $bidang
         ]);
+    }
+    function done($id)
+    {
+        // $check = KalibrasiModel::GetVal($id, 'status');
+        // if ($check == '0') 
+        // {
+        //     $data = ['status' => '1'];        
+        // } 
+        // else 
+        // {
+        //     $data = ['status' => '0'];
+        // }
+    
+        // $put = KalibrasiModel::Edit($data, $id);
+        // if ($put) 
+        // {
+            $rentan = KalibrasiModel::GetVal($id, 'interval_kalibrasi');
+            $terakhir_perawatan_lama = KalibrasiModel::GetVal($id, 'terakhir_perawatan');
+            $terakhir_perawatan = RiwayatModel::GetLastRiwayat($id);
+            if (is_string($terakhir_perawatan)) 
+            {
+                $tgl = date( "Y-m-d", strtotime( "$terakhir_perawatan + $rentan year" ));
+            } 
+            else 
+            {
+                $tgl = date( "Y-m-d", strtotime( "$terakhir_perawatan_lama + $rentan year" ));
+            }
+
+            $now = ['riwayat' => $tgl, 'idkalibrasi' => $id];
+            $rest = RiwayatModel::Insert($now);
+
+            return redirect(url('kalibrasi/detail/'.$id));
+        // } 
+        // else 
+        // {
+        //     return redirect(route('kalibrasi'));
+        // }
     }
 
     //post

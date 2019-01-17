@@ -2,4 +2,19 @@
     Tambahkan kode dibawah ini di database mysql
 */
 
-alter table users add type enum('admin','staff') not null default 'staff' after password;
+/* alter table users add type enum('admin','staff') not null default 'staff' after password; */
+
+## Harus ditambahkan sekarang
+alter table drop status
+alter table kalibrasi add status enum('1','0') not null default '0' after pic;
+
+## Buat table riwayat
+CREATE TABLE `riwayat` (
+  `idriwayat` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `riwayat` date NOT NULL,
+  `idkalibrasi` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`idriwayat`),
+  KEY `fk_idkalibrasi_riwayat` (`idkalibrasi`),
+  CONSTRAINT `fk_idkalibrasi_riwayat` FOREIGN KEY (`idkalibrasi`) REFERENCES `kalibrasi` (`idkalibrasi`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+

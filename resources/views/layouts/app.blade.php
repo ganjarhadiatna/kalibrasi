@@ -20,12 +20,24 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('font-awesome/css/font-awesome.min.css') }}">
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
+                <a class="navbar-brand" href="javascript:void(0)" onclick="goBack()">
+                    <i class="fa fa-lw fa-arrow-left"></i>
+                    Kembali
+                </a>
                 <a class="navbar-brand" href="{{ url('/') }}">
+                    <i class="fa fa-lw fa-home"></i>
                     Home
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -51,12 +63,12 @@
                         @else
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/bidang') }}">
-                                    Bidang Pengujian
+                                    Daftar Bidang Pengujian
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/kalibrasi') }}">
-                                    Jadwal Kalibrasi
+                                    Jadwal Kalibrasi Alat
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
